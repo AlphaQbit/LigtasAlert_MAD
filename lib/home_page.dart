@@ -10,14 +10,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _room = TextEditingController(text: 'Room 214');
-  final _message = TextEditingController();
   String? _selectedType;
   String _facility = 'building-a';
 
   @override
   void dispose() {
     _room.dispose();
-    _message.dispose();
     super.dispose();
   }
 
@@ -39,14 +37,14 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               _buildStatusCard(),
-              const SizedBox(height: 16),
+              const SizedBox(height: 24),
               _buildAlertTypeSection(),
-              const SizedBox(height: 16),
+              const SizedBox(height: 24),
               _buildFormSection(),
               const SizedBox(height: 24),
               _buildSendButton(),
@@ -61,20 +59,20 @@ class _HomePageState extends State<HomePage> {
     return Card(
       color: kSurface,
       elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
         child: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 color: kPrimary.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(10),
               ),
-              child: const Icon(Icons.location_on, color: kPrimary, size: 24),
+              child: const Icon(Icons.location_on, color: kPrimary, size: 28),
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width: 20),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     _room.text,
                     style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: kTextPrimary,
                     ),
@@ -91,8 +89,8 @@ class _HomePageState extends State<HomePage> {
                   Row(
                     children: [
                       Container(
-                        width: 8,
-                        height: 8,
+                        width: 10,
+                        height: 10,
                         decoration: const BoxDecoration(
                           color: kPrimary,
                           shape: BoxShape.circle,
@@ -124,19 +122,19 @@ class _HomePageState extends State<HomePage> {
         const Text(
           'Select Alert Type',
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
             color: kTextPrimary,
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 20),
         GridView.count(
           crossAxisCount: 2,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          mainAxisSpacing: 12,
-          crossAxisSpacing: 12,
-          childAspectRatio: 1.2,
+          mainAxisSpacing: 20,
+          crossAxisSpacing: 20,
+          childAspectRatio: 1.0,
           children: [
             for (final alertType in alertTypes)
               _AlertTypeButton(
@@ -167,7 +165,9 @@ class _HomePageState extends State<HomePage> {
         const SizedBox(height: 8),
         DropdownButtonFormField<String>(
           initialValue: _facility,
-          decoration: _buildInputDecoration(),
+          decoration: _buildInputDecoration(
+            hintText: 'Select facility',
+          ),
           items: [
             for (final facility in facilities)
               DropdownMenuItem(
@@ -179,7 +179,7 @@ class _HomePageState extends State<HomePage> {
             setState(() => _facility = value ?? _facility);
           },
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 20),
         const Text(
           'Room or Location',
           style: TextStyle(
@@ -196,40 +196,28 @@ class _HomePageState extends State<HomePage> {
           ),
           onChanged: (_) => setState(() {}),
         ),
-        const SizedBox(height: 16),
-        const Text(
-          'Additional Details (optional)',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: kTextPrimary,
-          ),
-        ),
         const SizedBox(height: 8),
-        TextField(
-          controller: _message,
-          maxLines: 3,
-          decoration: _buildInputDecoration(
-            hintText: 'Any additional information...',
-          ),
-        ),
       ],
     );
   }
 
   Widget _buildSendButton() {
     return FilledButton.icon(
-      onPressed: () {
-        // UI only - no functionality
-      },
+      onPressed: _selectedType != null
+          ? () {
+              // TODO: show confirmation, send notification
+            }
+          : null,
       style: FilledButton.styleFrom(
-        backgroundColor: kDanger,
+        backgroundColor: _selectedType != null ? kDanger : kBorder,
         padding: const EdgeInsets.symmetric(vertical: 16),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(16),
         ),
       ),
-      icon: const Icon(Icons.warning_amber_rounded, size: 24),
+      icon: _selectedType != null
+          ? const Icon(Icons.warning_amber_rounded, size: 24)
+          : const Icon(Icons.warning_amber_rounded, size: 24),
       label: const Text(
         'Send Alert',
         style: TextStyle(
@@ -245,17 +233,17 @@ class _HomePageState extends State<HomePage> {
       hintText: hintText,
       filled: true,
       fillColor: kSurface,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         borderSide: const BorderSide(color: kBorder),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         borderSide: const BorderSide(color: kBorder),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         borderSide: const BorderSide(color: kPrimary, width: 2),
       ),
     );
@@ -280,47 +268,53 @@ class _AlertTypeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: isSelected ? 4 : 1,
+      elevation: isSelected ? 4 : 2,
       color: isSelected ? kDanger.withValues(alpha: 0.1) : kSurface,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         side: BorderSide(
           color: isSelected ? kDanger : kBorder,
           width: isSelected ? 2 : 1,
         ),
       ),
       child: InkWell(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         onTap: onPressed,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                size: 36,
-                color: isSelected ? kDanger : kTextPrimary,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                label,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+          // ponytail: scaleDown so long labels ("Ordered evacuation") shrink to
+          // fit the tile instead of overflowing on narrow phones.
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  icon,
+                  size: 40,
                   color: isSelected ? kDanger : kTextPrimary,
                 ),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                description,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 11,
-                  color: kTextSecondary,
+                const SizedBox(height: 12),
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                    color: isSelected ? kDanger : kTextPrimary,
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 4),
+                Text(
+                  description,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 11,
+                    color: kTextSecondary,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

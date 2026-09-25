@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const kPrimary = Color(0xFF10B981);
+const kPrimary = Color(0xFFEF4444);
 const kDanger = Color(0xFFEF4444);
 const kBorder = Color(0xFFE5E7EB);
 const kTextPrimary = Color(0xFF1F2937);
