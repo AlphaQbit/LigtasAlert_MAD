@@ -173,7 +173,7 @@ class _HomePageState extends State<HomePage> {
                   vertical: 6,
                 ),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFDCFCE7),
+                  color: kOkBg,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: const Row(
@@ -182,7 +182,7 @@ class _HomePageState extends State<HomePage> {
                     Icon(
                       Icons.circle,
                       size: 7,
-                      color: Color(0xFF16A34A),
+                      color: kOkDot,
                     ),
                     SizedBox(width: 5),
                     Text(
@@ -190,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w800,
-                        color: Color(0xFF15803D),
+                        color: kOkText,
                       ),
                     ),
                   ],
@@ -335,7 +335,7 @@ class _HomePageState extends State<HomePage> {
               }
             : null,
         style: FilledButton.styleFrom(
-          backgroundColor: kDanger,
+          backgroundColor: kPrimary,
           disabledBackgroundColor: kBorder,
           foregroundColor: Colors.white,
           disabledForegroundColor: kTextSecondary,
@@ -384,11 +384,11 @@ class _EmergencyCard extends StatelessWidget {
           duration: const Duration(milliseconds: 180),
           decoration: BoxDecoration(
             color: isSelected
-                ? kDanger.withValues(alpha: 0.08)
+                ? kPrimary.withValues(alpha: 0.08)
                 : kSurface,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: isSelected ? kDanger : kBorder,
+              color: isSelected ? kPrimary : kBorder,
               width: isSelected ? 2.5 : 1,
             ),
             boxShadow: [
@@ -410,8 +410,8 @@ class _EmergencyCard extends StatelessWidget {
                 height: 76,
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? kDanger
-                      : kDanger.withValues(alpha: 0.08),
+                      ? kPrimary
+                      : kPrimary.withValues(alpha: 0.08),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
@@ -419,7 +419,7 @@ class _EmergencyCard extends StatelessWidget {
                   size: 38,
                   color: isSelected
                       ? Colors.white
-                      : kDanger,
+                      : kPrimary,
                 ),
               ),
 
@@ -432,7 +432,7 @@ class _EmergencyCard extends StatelessWidget {
                   fontSize: 17,
                   fontWeight: FontWeight.w900,
                   color: isSelected
-                      ? kDanger
+                      ? kPrimary
                       : kTextPrimary,
                 ),
               ),
@@ -445,7 +445,7 @@ class _EmergencyCard extends StatelessWidget {
                     fontSize: 9,
                     fontWeight: FontWeight.w900,
                     letterSpacing: 1,
-                    color: kDanger,
+                    color: kPrimary,
                   ),
                 ),
               ],

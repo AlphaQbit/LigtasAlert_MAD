@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class LoginPage extends StatefulWidget {
@@ -427,11 +427,11 @@ class _LoginPageState extends State<LoginPage> {
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: kDanger, width: 1.5),
+        borderSide: const BorderSide(color: kPrimary, width: 1.5),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: kDanger, width: 2),
+        borderSide: const BorderSide(color: kPrimary, width: 2),
       ),
     );
   }

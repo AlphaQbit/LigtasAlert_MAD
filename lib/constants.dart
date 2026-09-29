@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 const kPrimary = Color(0xFFEF4444);
-const kDanger = Color(0xFFEF4444);
 const kBorder = Color(0xFFE5E7EB);
 const kTextPrimary = Color(0xFF1F2937);
 const kTextSecondary = Color(0xFF6B7280);
 const kSurface = Color(0xFFFFFFFF);
 const kBg = Color(0xFFF9FAFB);
+const kOkBg = Color(0xFFDCFCE7);
+const kOkDot = Color(0xFF16A34A);
+const kOkText = Color(0xFF15803D);
 
 const alertTypes = <({String type, IconData icon, String description})>[
   (type: 'Lockdown', icon: Icons.lock, description: 'Active threat'),

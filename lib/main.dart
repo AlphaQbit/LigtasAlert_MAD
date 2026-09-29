@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'home_page.dart';
 import 'login_page.dart';
@@ -17,12 +17,17 @@ class LigtasApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: kPrimary),
       ),
-      home: LoginPage(
-        onLoggedIn: () {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const HomePage()),
-          );
-        },
+      // ponytail: Builder so onLoggedIn's context sits *below* the Navigator
+      // that MaterialApp installs. LigtasApp's own context is above it, and
+      // Navigator.of() there throws - which makes the login button look dead.
+      home: Builder(
+        builder: (context) => LoginPage(
+          onLoggedIn: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => const HomePage()),
+            );
+          },
+        ),
       ),
     );
   }
