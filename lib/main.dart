@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'home_page.dart';
+import 'login_page.dart';
 
 void main() => runApp(const LigtasApp());
 
@@ -16,7 +17,13 @@ class LigtasApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: kPrimary),
       ),
-      home: const HomePage(),
+      home: LoginPage(
+        onLoggedIn: () {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (_) => const HomePage()),
+          );
+        },
+      ),
     );
   }
 }
