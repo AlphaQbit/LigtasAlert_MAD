@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _room = TextEditingController(text: 'Room 214');
   String? _selectedType;
-  String _facility = 'building-a';
+  String _facility = facilities.first.id;
 
   @override
   void dispose() {
@@ -273,25 +273,9 @@ class _HomePageState extends State<HomePage> {
         horizontal: 12,
         vertical: 14,
       ),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(13),
-        borderSide: const BorderSide(
-          color: kBorder,
-        ),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(13),
-        borderSide: const BorderSide(
-          color: kBorder,
-        ),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(13),
-        borderSide: const BorderSide(
-          color: kPrimary,
-          width: 2,
-        ),
-      ),
+      border: outlineBorder(13),
+      enabledBorder: outlineBorder(13),
+      focusedBorder: outlineBorder(13, color: kPrimary, width: 2),
     );
   }
 
@@ -324,16 +308,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildSendButton() {
-    final enabled = _selectedType != null;
-
     return SizedBox(
       height: 58,
       child: FilledButton.icon(
-        onPressed: enabled
-            ? () {
-                // Existing behavior preserved.
-              }
-            : null,
+        // ponytail: no backend yet, so send is a no-op. Wire the API call here.
+        onPressed: _selectedType == null ? null : () {},
         style: FilledButton.styleFrom(
           backgroundColor: kPrimary,
           disabledBackgroundColor: kBorder,

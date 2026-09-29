@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 
 const kPrimary = Color(0xFFEF4444);
 const kBorder = Color(0xFFE5E7EB);
@@ -10,15 +10,21 @@ const kOkBg = Color(0xFFDCFCE7);
 const kOkDot = Color(0xFF16A34A);
 const kOkText = Color(0xFF15803D);
 
-const alertTypes = <({String type, IconData icon, String description})>[
-  (type: 'Lockdown', icon: Icons.lock, description: 'Active threat'),
-  (type: 'Fire', icon: Icons.local_fire_department, description: 'Evacuate now'),
-  (type: 'Medical', icon: Icons.local_hospital, description: 'Medical emergency'),
-  (type: 'Evacuation', icon: Icons.exit_to_app, description: 'Ordered evacuation'),
+OutlineInputBorder outlineBorder(double radius, {Color color = kBorder, double width = 1}) =>
+    OutlineInputBorder(
+      borderRadius: BorderRadius.circular(radius),
+      borderSide: BorderSide(color: color, width: width),
+    );
+
+const alertTypes = <({String type, IconData icon})>[
+  (type: 'Lockdown', icon: Icons.lock),
+  (type: 'Fire', icon: Icons.local_fire_department),
+  (type: 'Medical', icon: Icons.local_hospital),
+  (type: 'Evacuation', icon: Icons.exit_to_app),
 ];
 
 const facilities = <({String id, String label})>[
-  (id: 'building-a', label: 'Building A'),
-  (id: 'building-b', label: 'Building B'),
+  (id: 'building-a', label: 'MCC MAIN'),
+  (id: 'building-b', label: 'MCC MADAPDAP'),
   (id: 'campus', label: 'Campus'),
 ];

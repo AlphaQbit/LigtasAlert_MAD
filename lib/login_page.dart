@@ -259,16 +259,19 @@ class _LoginPageState extends State<LoginPage> {
 
         const SizedBox(width: 10),
 
-        const Text(
-          'Remember me',
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-            color: kTextPrimary,
+        const Expanded(
+          child: Text(
+            'Remember me',
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: kTextPrimary,
+            ),
           ),
         ),
 
-        const Spacer(),
+        const SizedBox(width: 8),
 
         TextButton(
           onPressed: () {},
@@ -307,7 +310,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
         child: const Text(
-          'LOG IN',
+          'Log In',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w900,
@@ -375,12 +378,15 @@ class _LoginPageState extends State<LoginPage> {
           color: kTextSecondary,
         ),
         const SizedBox(width: 6),
-        Text(
-          'Your data stays on campus',
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            color: kTextSecondary.withValues(alpha: 0.9),
+        Flexible(
+          child: Text(
+            'Your data stays on campus',
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: kTextSecondary.withValues(alpha: 0.9),
+            ),
           ),
         ),
       ],
@@ -413,26 +419,11 @@ class _LoginPageState extends State<LoginPage> {
       filled: true,
       fillColor: kBg,
       contentPadding: const EdgeInsets.symmetric(vertical: 18),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: kBorder),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: kBorder),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: kPrimary, width: 2),
-      ),
-      errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: kPrimary, width: 1.5),
-      ),
-      focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: kPrimary, width: 2),
-      ),
+      border: outlineBorder(14),
+      enabledBorder: outlineBorder(14),
+      focusedBorder: outlineBorder(14, color: kPrimary, width: 2),
+      errorBorder: outlineBorder(14, color: kPrimary, width: 1.5),
+      focusedErrorBorder: outlineBorder(14, color: kPrimary, width: 2),
     );
   }
 }
